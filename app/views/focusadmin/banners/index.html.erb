@@ -1,0 +1,28 @@
+<h1><%= t('.title') %></h1>
+
+<div class="table-responsive">
+	<table class="table table-striped" id="sortable_banner">
+	  <thead>
+	    <tr>
+	      <th><%= t('.banner') %></th>
+	      <th><%= t('.link') %></th>
+	      <!-- <th><%= t('.target') %></th> -->
+	      <th><%= t('.memo') %></th>
+	      <th></th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	  	<% @banners.each do |b| %>
+	    <tr data-item-id=<%= "#{b.id}" %> class="item">
+	      <td><%= cl_image_tag b.banner, :width => 320 if b.banner.present? %></td>
+	      <td><%= link_to b.link, b.link, target: "_blank" %></td>
+	      <!-- <td><%= b.target %></td> -->
+	      <td><%= b.memo %></td>
+        <td><%= link_to 'Destroy', b, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	    </tr>
+	    <% end %>
+	  </tbody>
+	</table>
+</div>
+
+<%= link_to t('.new_banner'), new_banner_path, class: "btn btn-default" %>

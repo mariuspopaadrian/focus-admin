@@ -1,0 +1,56 @@
+<hr />
+<%= search_form_for @q, class: "form-inline" do |f| %>
+  <%= f.label t('.title_cont') %>
+  <%= f.search_field :title_cont, class: "form-control" %>
+  <%= f.label t('.excerpt_cont') %>
+  <%= f.search_field :excerpt_cont, class: "form-control" %>
+  <%= f.submit t('.search'), class: "btn btn-default" %>
+<% end %>
+<hr />
+
+<%= t('.articles_published_count') %> (<%= @articles_published_count %> <%= t('.articles_chart') %>)
+<%= link_to t('.review'), review_path, class: "pull-right" %>
+<hr style="clear:both" />
+<div class="row">
+  <div class="col-xs-12">
+    <div class="table-responsive">
+    	<table class="table table-striped">
+    	  <thead>
+    	    <tr>
+    	      <th><%= sort_link(@q, :id, 'ID', default_order: :desc) %></th>
+    	      <th><%= t('.title') %></th>
+    	      <th>PV</th>
+    	      <th><%= t('.handlename') %></th>
+    	      <th><%= sort_link(@q, :updated_at, t('.updated_at')) %></th>
+    	      <th><%= sort_link(@q, :status, t('.status')) %></th>
+    	    </tr>
+    	  </thead>
+    	  <tbody>
+    	  	<% @articles.each do |a| %>
+    	    <tr id="<%= a.id %>">
+    	      <td><small><%= a.id %></small></td>
+    	      <td><%= link_to a.title, main_app.article_path(a), target: "_blank" %> <small><%= link_to fa_icon("pencil"), edit_article_path(a) %></small></td>
+    	      <td>
+    	      	<% if GaPageview.find_by(article_id: a.id).present? %>
+    	      		<% @count = GaPageview.find_by(article_id: a.id) %><%= @count.count.to_s(:delimited) %>
+    	      	<% end %>
+    	      </td>
+    	      <td><%= link_to a.user.handlename, curator_page_path(a.user.username), target: "_blank" if a.user.present? %></td>
+    	      <td><%= a.updated_at.to_s(:simple) %><% if a.initially_submitted_at.present? %><br><small><%= t('.initially_submitted_at') %>: <%= a.initially_submitted_at.to_s(:simple) %></small><% end %></td>
+    	      <td class="status" data-article-id="<%= a.id %>">
+              <% if a.status == "published" %>
+                <%= form_for(a, url: article_path(a), html: {method: "put"}, data: { remote: true }) do |f| %>
+                  <%= submit_tag t('.return_to_draft'), name: "status_change_button", class: "btn btn-default btn-xs pull-right" %>
+                <% end %>
+              <% end %>
+              <%= status_view(a) %><br><%= a.published_at.to_s %>
+    		　</td>
+    	    </tr>
+    	    <% end %>
+    	  </tbody>
+    	</table>
+      <%= paginate @articles, :outer_window => 10 %>
+    </div>
+
+  </div>
+</div>

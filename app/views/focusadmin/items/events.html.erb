@@ -1,0 +1,30 @@
+<h1>Events</h1>
+<div class="table-responsive">
+	<table class="table table-striped">
+	  <thead>
+	    <tr>
+	      <th>Article</th>
+        <th colspan="2">Thumbnail</th>
+        <th width="200">When</th>
+        <th>Where</th>
+        <th>description</th>
+        <th>Price</th>
+        <th>Updated At</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	  	<% @events.each do |i| %>
+	    <tr id="<%= i.id %>">
+	      <td><%= link_to fa_icon("file-text-o"), main_app.article_path(i.article), target: "_blank" %></td>
+        <td><%= cl_image_tag i.item_image, :width => 60, :sign_url => true %></td>
+	      <td><%= link_to i.event_name, i.event_url, target: "_blank" %></td>
+        <td><%= i.event_start_date %> - <%= i.event_end_date %> / <%= i.event_time %></td>
+        <td><%= i.event_place %> <small><%= link_to i.event_address, "http://maps.google.com/?q="+i.event_address, target: "_blank" if i.event_address.present? %></small></td>
+        <td><%= i.data %></td>
+        <td><%= link_to number_to_currency(i.event_ticket_price, locale: I18n.locale), i.event_registration_url if i.event_registration_url.present? %></td>
+        <td><%= i.updated_at.to_s(:simple) %></td>
+	    </tr>
+	    <% end %>
+	  </tbody>
+	</table>
+</div>

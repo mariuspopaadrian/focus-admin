@@ -1,0 +1,21 @@
+<h1><%= ENV['SITE_NAME'] %>静的ページコンテンツ</h1>
+
+<%= simple_form_for(@setting, html: { class: 'form-vertical' }) do |f| %>
+<div class="row">
+  <div class="col-xs-8">
+    <%= f.input :concept_page_html %>
+    <%= f.input :privacy_page_html %>
+    <%= f.input :terms_page_html %>
+    <%= f.input :curator_terms_page_html %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+   <%= f.button :submit, "変更する", class: "btn btn-primary" %>
+  </div>
+</div>
+<% end %>
+
+
+<hr>
+<%= link_to '戻る', settings_path %>

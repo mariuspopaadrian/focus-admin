@@ -1,0 +1,16 @@
+<%= simple_form_for(@feature, :url => {:action => 'update', id: @feature.id}) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :slug %>
+    <%= f.input :description %>
+    <%= f.input :featured_articles %>
+    <%= f.input :thumbnail %>
+    <%= f.input :status %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

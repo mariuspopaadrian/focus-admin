@@ -1,0 +1,10 @@
+<h1><%= t('.title') %></h1>
+
+<div class="">
+<ul>
+	<% @tag_list.each do |tag| %>
+    <li><%= link_to tag.name, main_app.root_path + "tag/" + tag.to_s %> (<%= tag.taggings_count %><%= t('.articles') %>)</li>
+  <% end %>
+  <%= paginate @tag_list %>
+</ul>
+</div>

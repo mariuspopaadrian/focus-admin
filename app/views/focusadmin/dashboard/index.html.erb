@@ -1,0 +1,45 @@
+<p>&nbsp;</p>
+<div class="row">
+	<div class="col-xs-12">
+		<p class="pull-left">Welcome <%= current_admin.email %> <%= link_to t('.logout'), main_app.destroy_admin_session_path, method: :delete %></p>
+    <%= link_to fa_icon("angle-double-right")+" "+t('.ranking'), rankings_path, class: "pull-right" %>
+		<hr style="clear:both" />
+	</div>
+	<div class="col-sm-8">
+		<h4><%= t('.articles_waiting_review') %> (<%= @articles_waiting_review_count %> <%= t('.articles_chart') %>)<small class="pull-right" style="padding-top: 4px"><%= link_to fa_icon("angle-double-right")+" " + t('.review'), review_path %></small></h4>
+		<table class="table">
+		<% @articles_waiting_review.each do |article| %>
+			<tr>
+        <th><%= link_to article.id, review_path(anchor: article.id) %></th>
+        <th><%= t('.submitted') if I18n.locale == :en %><%= article.updated_at.to_s(:simple) %><%= t('.submitted') if I18n.locale == :ja %></th>
+        <td><%= link_to article.title, main_app.article_path(article), target: "_blank" %></td>
+        <td><%= article.category.name if article.category_id.present? %></td>
+        <td><%= link_to article.user.handlename, curator_page_path(article.user.username), target: "_blank" %></td>
+      </tr>
+		<% end %>
+		</table>
+	</div>
+  <div class="col-sm-3">
+    <h4><%= @articles_count.to_s(:delimited) %> <%= t('.articles_chart') %></h4>
+    <%= pie_chart Article.group(:status).count %>
+  </div>
+  <div class="col-sm-1">
+    <h4><%= fa_icon("star") %></h4>
+    <%= @favorites %>
+  </div>
+</div>
+
+<hr />
+
+<div class="row">
+	<div class="col-xs-12">
+
+    <h4><%= t('.new_articles_graph') %></h4>
+    <%= line_chart Article.group_by_day(:created_at, range: 1.month.ago.midnight..Time.now).count %>
+    <p>&nbsp;</p>
+
+		<h4><%= @users_count.to_s(:delimited) %> <%= t('.users_chart') %></h4>
+		<%= line_chart User.group_by_day(:created_at, range: 1.month.ago.midnight..Time.now).count %>
+	</div>
+
+</div>

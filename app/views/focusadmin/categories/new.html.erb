@@ -1,0 +1,40 @@
+<h1>カテゴリの作成</h1>
+
+<%= form_for(@category) do |f| %>
+  <% if @category.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:</h2>
+
+      <ul>
+      <% @category.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :slug %><br>
+    <%= f.text_field :slug %>
+  </div>
+
+  <div class="preview">
+    <%= cl_image_upload_tag('category[icon]', :tags => "category_icon") %>
+  </div>
+  
+  <div class="preview">
+  	<%= cl_image_upload_tag('category[thumbnail]', :tags => "category_image", :crop => :limit, :width => 750, :height => 750) %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

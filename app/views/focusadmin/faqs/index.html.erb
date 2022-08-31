@@ -1,0 +1,25 @@
+<h1><%= t('.faq') %></h1>
+<div class="table-responsive">
+	<table class="table table-striped" id="sortable_faq">
+	  <thead>
+	    <tr>
+	      <th><%= t('.question') %></th>
+	      <th><%= t('.answer') %></th>
+	      <th><%= t('.updated_at') %></th>
+	      <th></th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	  	<% @faqs.each do |faq| %>
+	    <tr data-item-id=<%= "#{faq.id}" %> class="item">
+	      <td><%= faq.question %></td>
+	      <td><%= faq.answer %><br><%= cl_image_tag faq.image, style: "max-width: 200px" if faq.image.present? %></td>
+	      <td><%= faq.updated_at %></td>
+	      <td><%= link_to t('.edit_faq'), edit_faq_path(faq.id) %></td>
+	    </tr>
+	    <% end %>
+	  </tbody>
+	</table>
+</div>
+
+<%= link_to t('.new_faq'), new_faq_path, class: "btn btn-default" %>

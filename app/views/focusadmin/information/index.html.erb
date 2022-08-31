@@ -1,0 +1,19 @@
+<h1><%= t('.title') %></h1>
+
+<table class="table">
+  <tbody>
+    <% @information.each do |information| %>
+      <tr>
+        <td><%= information.created_at.to_s(:simple) %></td>
+        <td><%= information.status %></td>
+        <td><%= link_to information.title, main_app.information_path(information), target: "_blank" %></td>
+        <td><%= link_to 'Edit', edit_information_path(information) %></td>
+        <td><%= link_to 'Delete', information, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<hr>
+
+<%= link_to t('.new'), new_information_path %>

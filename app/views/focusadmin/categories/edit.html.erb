@@ -1,0 +1,48 @@
+<h1>カテゴリの編集</h1>
+
+<%= form_for @category, :url => {:action => 'update', id: @category.id} do |f| %>
+  <% if @category.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:</h2>
+
+      <ul>
+      <% @category.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :slug %><br>
+    <%= f.text_field :slug %>
+  </div>
+
+  アイコン
+  <%= cl_image_upload_tag('category[icon]', :tags => "category_icon") %>
+
+  <div class="preview">
+      <% if @category.thumbnail.present? %>
+        <%= cl_image_tag @category.thumbnail, :width => 320, :sign_url => true, :class => "img-responsive" %>
+      <% end %>
+  </div>
+  <br>
+  <%= cl_image_upload_tag('category[thumbnail]', :tags => "category_image", :crop => :limit, :width => 750, :height => 750) %>
+
+  <div class="actions">
+    <%= f.submit "更新する", class: "btn btn-default" %>
+  </div>
+
+  <p>&nbsp;</p>
+  <div class="actions">
+    <%= link_to "このカテゴリーを削除", category_path(@category.id), method: :delete, data: { confirm: '本当に削除しますか？この操作は取り消せません。' } %>
+  </div>
+<% end %>

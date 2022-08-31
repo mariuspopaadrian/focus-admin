@@ -1,0 +1,82 @@
+<%= simple_form_for(@setting, html: { class: 'form-vertical' }) do |f| %>
+<div class="row">
+  <div class="col-xs-1"><%= f.input :locale, hint: 'en or ja only; Setting this incorrectly will crash the site' %></div>
+  <div class="col-xs-3"><%= f.input :site_name_supplement %></div>
+  <div class="col-xs-8"><%= f.input :catch, hint: 'Short Text' %></div>
+</div>
+<div class="row">
+  <div class="col-xs-6">
+    <div class="preview">
+      <% if @setting.site_logo_image.present? %>
+        <%= cl_image_tag @setting.site_logo_image, :width => 320, :sign_url => true, :class => "img-responsive" %>
+      <% end %>
+    </div>
+    <%= f.label :site_logo_image %><br>
+    <%= cl_image_upload_tag('setting[site_logo_image]', :tags => "setting", :crop => :limit, :width => 750, :height => 750) %>
+  </div>
+  <div class="col-xs-6">
+  <%= f.label :sp_site_logo_image %><br>
+  <%= cl_image_upload_tag('setting[sp_site_logo_image]', :tags => "setting", :crop => :limit, :width => 750, :height => 750) %>
+  <%= f.label :smartnews_logo_image %><br>700px x 100px
+  <%= cl_image_upload_tag('setting[smartnews_logo_image]', :tags => "setting", :crop => :limit, :width => 700, :height => 100) %>
+  <%= f.label :footer_logo_image %><br>
+  <%= cl_image_upload_tag('setting[footer_logo_image]', :tags => "setting", :crop => :limit) %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+  <%= f.input :meta_description, hint: 'Recommended Length: 50 characters for Mobile, 120 characters for Desktop' %>
+  <%= f.input :og_description %>
+
+  <%= f.label :og_image %><br>Use images that are at least 1200 x 630 pixels.
+  <%= cl_image_upload_tag('setting[og_image]', :tags => "setting", :crop => :limit, :width => 750, :height => 750) %>
+
+  <%= f.label :favicon %><br>File name should be favicon.ico; size is 32px x 32px
+  <%= cl_image_upload_tag('setting[favicon]', :tags => "setting", :crop => :limit, :width => 750, :height => 750) %>
+
+  <%= f.label :apple_touch_icon %><br>File extension should be png; size is 192px x 192px
+  <%= cl_image_upload_tag('setting[apple_touch_icon]', :tags => "setting", :crop => :limit, :width => 750, :height => 750) %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-3">
+    <%= f.input :facebook_page_url %>
+  </div>
+  <div class="col-xs-3">
+    <%= f.input :twitter_account_url %>
+  </div>
+  <div class="col-xs-3">
+    <%= f.input :instagram_account_url %>
+  </div>
+  <div class="col-xs-3">
+    <%= f.input :line_account_url %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-6">
+    <%= f.input :exclude_tags %>
+  </div>
+  <div class="col-xs-6">
+    <%= f.input :exclude_brands %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <%= f.input :recent_articles_tab_text %>
+    <hr>
+    
+    <%= f.input :welcome_page_url %>
+    <%= f.input :author %>
+    <%= f.input :author_url %>
+    <%= f.input :author_url_anchor_text %>
+
+    <hr>
+    <%= f.input :free_field1_question %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+   <%= f.button :submit, "変更する", class: "btn btn-primary" %>
+  </div>
+</div>
+<% end %>

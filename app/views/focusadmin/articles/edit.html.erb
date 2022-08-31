@@ -1,0 +1,16 @@
+<h1><%= t('.title') %></h1>
+
+<%= simple_form_for @article do |f| %>
+  <%= f.input :title %>
+  <%= f.input :excerpt %>
+  <%= f.collection_select :category_id, Category.all, :id, :name, {prompt: t('.select_category')}, {class: "form-control"} %>
+  <hr>
+  <%= f.check_box :pr %>&nbsp;<%= t('.pr') %><br>
+  <%= f.check_box :pr_pickup %>&nbsp;<%= t('.pr_pickup') %><br><br>
+  <%#= f.input :pr_end, label: t('.pr_end') %>
+  <%= f.input :sponsor, label: t('.sponsor') %>
+  <hr />
+  <label><%= t('.publish_on_schedule_at') %></label>&nbsp;<%= f.datetime_select :publish_on_schedule_at, :start_year => Time.current.year, :minute_step => 15 %>
+  <hr />
+  <%= f.button :submit %>
+<% end %>

@@ -1,0 +1,23 @@
+<p style="margin-top: 20px;"><%= @comments_count %> comments</p>
+
+<div class="table-responsive">
+	<table class="table table-striped">
+	  <thead>
+	    <tr>
+        <th></th>
+	      <th><%= t('.body') %></th>
+        <th><%= t('.article') %></th>
+	      <th></th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	  	<% @comments.each do |c| %>
+	    <tr>
+        <td><%= link_to c.user.handlename, curator_page_path(c.user.username), target: "_blank" %><br><small><%= c.created_at.to_s(:simple) %></small></td>
+	      <td><%= c.body %></td>
+        <td><%= link_to commented_article(c).title, main_app.article_path(commented_article(c), anchor: :comments), target: "_blank" %></td>
+	    </tr>
+	    <% end %>
+	  </tbody>
+	</table>
+</div>

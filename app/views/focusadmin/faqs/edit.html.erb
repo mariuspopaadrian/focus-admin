@@ -1,0 +1,38 @@
+<h1>Edit FAQ</h1>
+
+<%= simple_form_for @faq, :url => {:action => 'update', id: @faq.id} do |f| %>
+  <% if @faq.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@faq.errors.count, "error") %> prohibited this faq from being saved:</h2>
+
+      <ul>
+      <% @faq.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.input :question %>
+  <%= f.input :answer %>
+
+  <%= t('.image') %>
+  <div class="preview">
+    <%= cl_image_upload_tag('faq[image]', :tags => "faq_image") %>
+  </div>
+
+  <div class="preview">
+    <% if @faq.image.present? %>
+      <%= cl_image_tag @faq.image, :width => 320, :sign_url => true%>
+    <% end %>
+  </div>
+  <br>
+
+  <div class="actions">
+    <%= f.submit "Update", class: "btn btn-default" %>
+  </div>
+
+  <p>&nbsp;</p>
+  <div class="actions">
+    <%= link_to "Delete", faq_path(@faq.id), method: :delete, data: { confirm: '本当に削除しますか？この操作は取り消せません。' } %>
+  </div>
+<% end %>

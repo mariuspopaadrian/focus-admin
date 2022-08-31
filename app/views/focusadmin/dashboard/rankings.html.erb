@@ -1,0 +1,34 @@
+<p>&nbsp;</p>
+
+<div class="row">
+  <div class="col-sm-6">
+    <h4>Top 30 <%= t('.curators_by_pv') %></h4>
+    <p><small><%= t('.curator_pv_count_logic_desc') %></small></p>
+
+    <table class="table">
+    <% @top_curators_by_pv.each.with_index(1) do |curator, i| %>
+      <tr>
+        <th><%= i %></th>
+        <td><%= curator.pageview_sum_of_all_articles.to_s(:delimited) if curator.pageview_sum_of_all_articles.present? %> PV</td>
+        <td><small><%= published_article_count(curator) %> Articles</small></td>
+        <td><small>Average <%= average_pv(curator.pageview_sum_of_all_articles, published_article_count(curator)) %> PV</small></td>
+        <td><%= link_to curator.handlename, curator_page_path(curator.username), target: "_blank" %></small></td>
+      </tr>
+    <% end %>
+    </table>
+  </div>
+    <div class="col-sm-6">
+    <h4>Top 30 <%= t('.articles') %></h4>
+    <p><small><%= t('.article_pv_count_logic_desc') %></small></p>
+
+    <table class="table">
+    <% @top_articles.each.with_index(1) do |count, i| %>
+      <tr><th><%= i %></th>
+      <td><%= count.count.to_s(:delimited) %> PV</td>
+      <td><%= link_to count.article.title, main_app.article_path(count.article), target: "_blank"  %></td>
+      <td><small><%= get_category_name(count.article) if count.article.category_id.present? %></small></td>
+      <td><small><%= link_to count.user.handlename, curator_page_path(count.user.username), target: "_blank" %></small></td></tr>
+    <% end %>
+    </table>
+  </div>
+</div>

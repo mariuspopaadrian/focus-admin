@@ -1,0 +1,7 @@
+<%= simple_form_for(@pickup) do |f| %>
+  <%= f.input :place, collection: [["トップページのヘッダー", "home_header"],  ["おすすめまとめ記事", "pickup_list"]], label: "ピックアップ箇所" %>
+  <%= f.input :pickup_type, as: :hidden, :input_html => { value: "Article" } %>
+  <%= f.input :type_id, label: "記事のID", placeholder: "記事のURLが https:///#{ENV['DOMAIN']}/24 の場合、24が記事のID" %>
+  <%= f.input :order, as: :hidden, :input_html => { value: 0 } %>
+  <%= f.button :submit, "送信" %>
+<% end %>

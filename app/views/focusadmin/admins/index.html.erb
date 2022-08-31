@@ -1,0 +1,25 @@
+<h1><%= t('.title') %></h1>
+
+<div class="table-responsive">
+	<table class="table table-striped">
+	  <thead>
+	    <tr>
+	      <th><%= t('.email') %></th>
+	      <th><%= t('.last_login') %></th>
+	      <th colspan="2"></th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	  	<% @admins.each do |admin| %>
+	    <tr>
+	      <td><%= admin.email %></td>
+	      <td><%= admin.last_sign_in_at %></td>
+        <td><%= link_to t('.change_password'), edit_admin_path(admin) %></td>
+        <td><%= link_to t('.delete_account'), admin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	    </tr>
+	    <% end %>
+	  </tbody>
+	</table>
+</div>
+
+<%= link_to t('.new'), new_admin_path %>

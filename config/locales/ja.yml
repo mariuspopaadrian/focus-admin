@@ -1,0 +1,320 @@
+ja:
+  activerecord:
+    attributes:
+      information:
+        title: '見出し'
+        excerpt: '抜粋'
+        body: '本文'
+        slug: 'url'
+        thumbnail: 'サムネイル画像'
+        status: 'ステータス'
+        published_at: '公開日時'
+  layouts:
+    focusadmin:
+      application:
+        admin: "管理画面"
+        contents: "コンテンツ"
+        articles: '記事'
+        scheduled: '予約投稿'
+        review: '審査'
+        features: '特集'
+        tags: 'タグ'
+        banners: 'バナー'
+        items: 'アイテム'
+        products: '商品情報'
+        events: 'イベント情報'
+        comments: 'コメント'
+        pickups: 'ピックアップ'
+        ads: '広告'
+        information: 'お知らせ'
+        users: 'ユーザー'
+        users_list: 'ユーザー 一覧'
+        curator_application_list: 'キュレーター応募者一覧'
+        settings: 'サイト設定'
+        view_site: 'サイトを見る'
+  focusadmin:
+    dashboard:
+      index:
+        logout: 'ログアウト'
+        ranking: 'ランキング'
+        new_articles_graph: '新規記事数の推移'
+        articles_chart: '記事'
+        review: '審査'
+        articles_waiting_review: '審査待ちの記事'
+        submitted: "提出"
+        total: '合計'
+        users_chart: 'ユーザー'
+      rankings:
+        curators_by_pv: キュレーター(PV順)
+        curator_pv_count_logic_desc: PV集計は毎00:00に実施されます。
+        article_pv_count_logic_desc: 記事のPV集計は15分ごとに実施されます。
+        articles: '記事'
+    comments:
+      index:
+        handlename: 'キュレーター'
+        article: '対象記事'
+        body: 'コメント'
+        created_at: '投稿日時'
+    articles:
+      index:
+        title_cont: 見出しに含む文字
+        excerpt_cont: 抜粋に含む文字
+        search: 記事検索
+        articles_chart: '記事'
+        articles_published_count: '記事'
+        review: '審査'
+        title: '記事名'
+        handlename: 'キュレーター'
+        updated_at: '最終更新日時'
+        initially_submitted_at: '初回'
+        published_at: '公開日時'
+        status: 'ステータス'
+        accept: '承認する'
+        reject: '差し戻す'
+        return_to_draft: '下書きに戻す'
+        close: '閉じる'
+        reject_reason: '差し戻しの理由（通知メールに記載されます）'
+        reject_message: 'その他メッセージ（通知メールに記載されます）'
+        published: '公開済'
+        reviewing: '審査待ち'
+        rejected: '再提出待ち'
+        draft: '下書き'
+        title_content_mismatch: 'タイトルと中身の著しい不一致'
+        inappropriate_image_text: '不適切な画像、テキストが含まれている'
+        source_problem: '出典が正しく掲載されていない'
+        commercial: '商用利用・宣伝・PR（ECサイト、アフィリエイトサイト、自社サイト・サービスの告知・誘導、特定の商品や店舗の宣伝・PR）'
+        purpose_is_linking_to_certain_sites: '特定サイトへの誘導を目的としていると考えられる'
+        not_matome: 'アイテム数が少なすぎたり、多すぎたりで、「まとめ記事」とはいえない'
+        single_origin: '一つのサイト・サービスからの転載だけで構成されている'
+        term_problem: '利用規約上の問題等があると考えられる'
+        other: 'その他'
+      edit:
+        title: 記事を編集
+        pr: PR記事
+        pr_end: PR終了日時
+        pr_pickup: PR記事をピックアップする
+        sponsor: スポンサー名
+        publish_on_schedule_at: '公開予定日時'
+        select_category: カテゴリーを選択
+      update:
+        article_has_been_rejected: '記事を差し戻しました。'
+        article_has_been_scheduled: '記事の公開を予約しました。'
+        article_has_been_published: '記事を公開しました。'
+      review:
+        published_articles: '記事一覧'
+        articles_chart: '記事'
+        articles_waiting_review: '審査待ちの記事'
+        title: '記事名'
+        handlename: 'キュレーター'
+        updated_at: '最終更新日時'
+        published_at: '公開日時'
+        status: 'ステータス'
+        accept: '承認する'
+        reject: '差し戻す'
+        return_to_draft: '下書きに戻す'
+        close: '閉じる'
+        reject_reason: '差し戻しの理由（通知メールに記載されます）'
+        reject_message: 'その他メッセージ（通知メールに記載されます）'
+        published: '公開済'
+        reviewing: '審査待ち'
+        rejected: '再提出待ち'
+        draft: '下書き'
+        post_to_facebook: "facebookページに投稿する"
+        message_to_post_to_facebook: "facebook投稿のメッセージ"
+        post_to_twitter: "twitterに投稿する"
+        message_to_post_to_twitter: "twitter投稿のメッセージ"
+        publish_now: 'すぐ公開する'
+        publish_on_schedule: '公開を予約する'
+        title_content_mismatch: 'タイトルと中身の著しい不一致'
+        inappropriate_image_text: '不適切な画像、テキストが含まれている'
+        source_problem: '出典が正しく掲載されていない'
+        commercial: '商用利用・宣伝・PR（ECサイト、アフィリエイトサイト、自社サイト・サービスの告知・誘導、特定の商品や店舗の宣伝・PR）'
+        purpose_is_linking_to_certain_sites: '特定サイトへの誘導を目的としていると考えられる'
+        not_matome: 'アイテム数が少なすぎたり、多すぎたりで、「まとめ記事」とはいえない'
+        single_origin: '一つのサイト・サービスからの転載だけで構成されている'
+        term_problem: '利用規約上の問題等があると考えられる'
+        other: 'その他'
+      scheduled:
+        title: '記事名'
+        handlename: 'キュレーター'
+        updated_at: '最終更新日時'
+        status: 'ステータス'
+        publish_on_schedule_at: '公開予定日時'
+        cancel_schedule: "キャンセル"
+    pickups:
+      index:
+        pickups: "ピックアップ設定"
+    tag:
+      index:
+        title: "タグ一覧"
+        articles: "記事"
+    areas:
+      index:
+        rank: "階層位置"
+        title: "エリア"
+        name: "エリア名"
+        description: "エリア説明文"
+        edit: "編集"
+        new_area: "新しいエリア"
+      edit:
+        edit_area: "エリアの編集"
+        name: "エリア名"
+        description: "説明"
+        thumbnail: "サムネイル"
+        thumbnail2: "スマホ用サムネイル(一覧ページ用)"
+        thumbnail3: "スマホ用サムネイル(詳細ページ用)"
+        back: "戻る"
+      new:
+        new_area: "新しいエリア"
+        name: "エリア名"
+        slug: "URL"
+        visibility: "表示の有無"
+        ancestry: "階層"
+        description: "説明"
+        thumbnail: "サムネイル"
+        thumbnail2: "スマホ用サムネイル(一覧ページ用)"
+        thumbnail3: "スマホ用サムネイル(詳細ページ用)"
+        back: "戻る"
+    features:
+      index:
+        title: 特集
+        name: 特集名
+        featured_articles: 特集に入れる記事
+        pageview_sum_of_all_articles: 記事の合計PV
+        pageview_monthly: 月間PV
+        description: 訴求文
+        status: ステータス
+        edit: 編集
+        new_feature: 新しい特集の作成
+      new:
+        new_feature: 新しい特集の作成
+        name: 特集名
+        featured_articles: 特集に入れる記事
+        featured_articles_hint: 記事のIDを掲載順に、カンマ区切りで入力してください
+        thumbnail: カバー画像
+        description: 訴求文
+        status: ステータス
+        published: 公開
+        in_draft: 下書き
+        back: 特集一覧に戻る
+      edit:
+        edit_feature: 特集の編集
+        name: 特集名
+        featured_articles: 特集に入れる記事
+        featured_articles_hint: 記事のIDを掲載順に、カンマ区切りで入力してください
+        thumbnail: カバー画像
+        description: 訴求文
+        status: ステータス
+        published: 公開
+        in_draft: 下書き
+        delete: この特集を削除
+        back: 特集一覧に戻る
+    users:
+      index:
+        email_cont: メールアドレスに含まれる文字
+        handlename_cont: ハンドルネームに含まれる文字
+        search: 検索
+        contact: "連絡先"
+        email: "メールアドレス"
+        handlename: "ハンドルネーム"
+        profile: "プロフィール"
+        number_of_articles: "記事数"
+        status: "権限"
+        pv: "PV"
+        last_login_datetime: "最終ログイン日時"
+        registration_datetime: "登録日時"
+        authentication: "認証方法"
+        unset: "未設定"
+        havent_logged_in_yet: "未設定"
+        mail_authentication: "メール認証"
+      curator_applicants:
+        email_cont: メールアドレスに含まれる文字
+        handlename_cont: ハンドルネームに含まれる文字
+        search: 検索
+        contact: "連絡先"
+        email: "メールアドレス"
+        handlename: "ハンドルネーム"
+        profile: "プロフィール"
+        basic_info: "基礎情報"
+        long_profile_text: "あなたのことを教えてください"
+        motivation: "どんなことを表現したいですか？"
+        number_of_articles: "記事数"
+        status: "権限"
+        pv: "PV"
+        last_login_datetime: "最終ログイン日時"
+        registration_datetime: "登録日時"
+        authentication: "認証方法"
+        unset: "未設定"
+        havent_logged_in_yet: "未設定"
+        mail_authentication: "メール認証"
+        submitted_at: "提出日時"
+        change_role: "権限の変更"
+      edit:
+        roles:
+          official_curator: 公式キュレーター
+          curator: キュレーター
+          user: 一般ユーザー
+    faqs:
+      index:
+        faq: "FAQ"
+        question: "Question"
+        answer: "Answer"
+        updated_at: "最終更新日時"
+        edit_faq: "編集する"
+        new_faq: "新しいFAQの作成"
+      new:
+        new_faq: "新しいFAQの作成"
+        image: "Answerへの補足画像"
+      edit:
+        image: "Answerへの補足画像"
+    information:
+      index:
+        title: お知らせ
+        new: 新しいお知らせの作成
+    contents:
+      index:
+        title: ページ管理
+        new: 新しいページの作成
+    admins:
+      index:
+        title: "管理者一覧"
+        new: "新しい管理者アカウントを作成する"
+        email: "メールアドレス"
+        last_login: "最終ログイン日時"
+        change_password: "パスワード変更"
+        delete_account: "削除"
+      new:
+        title: "新しい管理者アカウントを作成する"
+        create: "作成する"
+        return: "戻る"
+      edit:
+        title: "管理者アカウント情報を編集する"
+        change: "変更する"
+        return: "戻る"
+    banners:
+      index:
+        title: "バナー設定"
+        banner: "バナー"
+        link: "リンク"
+        target: "リンク方法"
+        memo: "メモ"
+        new_banner: "新しいバナーを追加"
+      new:
+        title: "バナーを追加"
+        banner: "バナー"
+        link: "リンク"
+        target: "リンク方法"
+        memo: "メモ"
+        register: "追加する"
+    settings:
+      index:
+        settings: "サイト設定"
+        current_language: "現在のサイト言語"
+        other_settings: "その他の設定"
+        edit: "編集する"
+        edit_page: "ページを編集する"
+        faqs: "FAQ管理"
+        categories: "カテゴリー管理"
+        areas: "エリア管理"
+        pages: "ページ管理"
+        admins: "管理者アカウント管理"

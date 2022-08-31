@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-xs-12">
+    <h1>Stats for <%= @user.handlename %></h1>
+    <p>Articles published. Counted based on published_at date.<br>
+    Published_at does not change unless it was once unpublished and then re-published.</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-6">
+  <table class="table">
+    <tr><th><%= Time.now.beginning_of_month.strftime('%B %Y') %></th><td><%= @published_this_month %> articles</td></tr>
+    <tr><th><%= Time.now.prev_month.beginning_of_month.strftime('%B %Y') %></th><td><%= @published_last_month %> articles</td></tr>
+  </table>
+  </div>
+</div>

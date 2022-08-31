@@ -1,0 +1,180 @@
+<p>&nbsp;</p>
+<%= t('.articles_waiting_review') %> (<%= @articles_waiting_review_count %> <%= t('.articles_chart') %>)
+<%= link_to t('.published_articles'), articles_path, class: "pull-right" %>
+<hr style="clear:both" />
+<div class="row">
+  <div class="col-xs-12">
+    <div class="table-responsive">
+    	<table class="table table-striped">
+    	  <thead>
+    	    <tr>
+    	      <th><%= sort_link(@q, :id, 'ID', default_order: :desc) %></th>
+            <th><%= sort_link(@q, :updated_at, t('.updated_at')) %></th>
+    	      <th><%= t('.title') %></th>
+    	      <th>PV</th>
+    	      <th><%= t('.handlename') %></th>
+    	      <th><%= t('.status') %></th>
+    	      <th></th>
+    	    </tr>
+    	  </thead>
+    	  <tbody>
+    	  	<% @articles.each do |a| %>
+    	    <tr id="<%= a.id %>">
+    	      <td><small><%= a.id %></small></td>
+            <td><%= a.updated_at.to_s(:simple) %></td>
+    	      <td><%= link_to a.title, main_app.article_path(a), target: "_blank" %></td>
+    	      <td>
+    	      	<% if GaPageview.find_by(article_id: a.id).present? %>
+    	      		<% @count = GaPageview.find_by(article_id: a.id) %><%= @count.count.to_s(:delimited) %>
+    	      	<% end %>
+    	      </td>
+    	      <td><%= link_to a.user.handlename, curator_page_path(a.user.username), target: "_blank" %></td>
+    	      <td class="status" data-article-id="<%= a.id %>">
+    	      	<%= status_view(a) %><br>
+              <%= a.published_at.to_s %>
+    		　</td>
+    		  <td>
+    			<% if a.status == "reviewing" %>
+              <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#acceptModal" data-id="<%= a.id %>" data-title="<%= a.title %>"><%= t('.accept') %></button>
+    		      <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#rejectModal" data-id="<%= a.id %>" data-title="<%= a.title %>"><%= t('.reject') %></button>
+    			<% end %>
+    			<% if a.status == "published" %>
+    				<%= form_for(a, url: article_path(a), html: {method: "put"}, data: { remote: true }) do |f| %>
+    					<%= submit_tag t('.return_to_draft'), name: "status_change_button", class: "btn btn-default btn-xs" %>
+    				<% end %>
+    			<% end %>
+    		  </td>
+    	    </tr>
+    	    <% end %>
+    	  </tbody>
+    	</table>
+    </div>
+
+    <!-- #acceptModal -->
+    <div class="modal fade" id="acceptModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">-</h4>
+          </div>
+
+          <%= form_tag('/admin/articles/33', method: :put, id: "acceptForm") do %>
+          <div class="modal-body">
+            <div>
+              <% if ENV['FACEBOOK_PAGE_ACCESS_TOKEN'].present? %>
+                <%= check_box_tag 'facebook[post]', true, false, {} %>&nbsp;<%= t('.post_to_facebook') %><br>
+                <%= text_area_tag :facebook_post_message, "", class: "form-control", placeholder: t('.message_to_post_to_facebook'), disabled: true %><br>
+                <% end %>
+              <% if ENV['TWITTER_CONSUMER_KEY'].present? && ENV['TWITTER_CONSUMER_SECRET'].present? && ENV['TWITTER_ACCESS_TOKEN'].present? && ENV['TWITTER_ACCESS_TOKEN_SECRET'].present? %>
+                <%= check_box_tag 'twitter[post]', true, false, {} %>&nbsp;<%= t('.post_to_twitter') %><br>
+                <%= text_area_tag :twitter_post_message, "", class: "form-control", placeholder: t('.message_to_post_to_twitter'), disabled: true %><br>
+                <% end %>
+
+
+              <%= datetime_select("article", "publish_on_schedule_at", default: 1.hour.from_now, :start_year => Time.current.year, :minute_step => 15) %>
+              <%= submit_tag t('.publish_on_schedule'), name: "status_change_button", class: "btn btn-primary" %>
+              <%= submit_tag t('.publish_now'), name: "status_change_button", class: "btn btn-primary" %>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal"><%= t('.close') %></button>
+          </div>
+          <% end %>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- #rejectModal -->
+    <div class="modal fade" id="rejectModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">-</h4>
+          </div>
+
+      	  <%= form_tag('/admin/articles/33', method: :put, id: "rejectForm") do %>
+          <div class="modal-body">
+
+    	    <div>
+    	    	<h4><%= t('.reject_reason') %></h4>
+
+    			<div class="radio">
+    			  <label>
+    			    <%= radio_button_tag 'reject_reason', t('.title_content_mismatch'), {:checked => true} %>
+    			    <%= t('.title_content_mismatch') %>
+    			  </label>
+    			</div>
+    			<div class="radio">
+    			  <label>
+    			    <%= radio_button_tag 'reject_reason', t('.inappropriate_image_text') %>
+    			    <%= t('.inappropriate_image_text') %>
+    			  </label>
+    			</div>
+    			<div class="radio">
+    			  <label>
+    			    <%= radio_button_tag 'reject_reason', t('.source_problem') %>
+    			    <%= t('.source_problem') %>
+    			  </label>
+    			</div>
+    			<div class="radio">
+    			  <label>
+    			    <%= radio_button_tag 'reject_reason', t('.commercial') %>
+    			    <%= t('.commercial') %>
+    			  </label>
+    			</div>
+    			<div class="radio">
+    			  <label>
+    			    <%= radio_button_tag 'reject_reason', t('.purpose_is_linking_to_certain_sites') %>
+    			    <%= t('.purpose_is_linking_to_certain_sites') %>
+    			  </label>
+    			</div>
+    			<div class="radio">
+    			  <label>
+    			    <%= radio_button_tag 'reject_reason', t('.not_matome') %>
+    			    <%= t('.not_matome') %>
+    			  </label>
+    			</div>
+    			<div class="radio">
+    			  <label>
+    			    <%= radio_button_tag 'reject_reason', t('.single_origin') %>
+    			    <%= t('.single_origin') %>
+    			  </label>
+    			</div>
+    			<div class="radio">
+    			  <label>
+    			    <%= radio_button_tag 'reject_reason', t('.term_problem') %>
+    			    <%= t('.term_problem') %>
+    			  </label>
+    			</div>
+    			<div class="radio">
+    			  <label>
+    			    <%= radio_button_tag 'reject_reason', t('.other') %>
+    			    <%= t('.other') %>
+    			  </label>
+    			</div>
+
+    	    </div>
+    	    <br />
+
+    	    <div>
+    	    	<h4><%= (t'.reject_message') %></h4>
+    	    	<%= text_area_tag 'reject_message', nil, class: "form-control" %>
+    	    </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal"><%= t('.close') %></button>
+    	     	<%= submit_tag t('.reject'), name: "status_change_button", class: "btn btn-warning" %>
+          </div>
+          <% end %>
+
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="table-responsive">
+	<table class="table table-striped" id="sortable_category">
+	  <thead>
+	    <tr>
+	      <th>アイコン</th>
+	      <th width="160">サムネイル画像</th>
+	      <th>カテゴリ名</th>
+	      <th>カテゴリ説明</th>
+	      <th>カテゴリURL</th>
+	      <th>最終更新日時</th>
+	      <th></th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	  	<% @categories.each do |c| %>
+	    <tr data-item-id=<%= "#{c.id}" %> class="item">
+	      <td><%= cl_image_tag c.icon if c.icon.present? %></td>
+	      <td><%= cl_image_tag c.thumbnail, :width => 160, :sign_url => true, :class => "img-responsive" if c.thumbnail.present? %></td>
+	      <td><%= c.name %></td>
+	      <td><%= c.description %></td>
+	      <td><%= link_to c.slug, main_app.category_path(c), target: "_blank" %></td>
+	      <td><%= c.updated_at %></td>
+	      <td><%= link_to "編集する", edit_category_path(c.id) %></td>
+	    </tr>
+	    <% end %>
+	  </tbody>
+	</table>
+</div>
+
+<%= link_to "新しいカテゴリーを作る", new_category_path, class: "btn btn-default" %>

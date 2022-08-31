@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="<%= ENV['DEFAULT_LOCALE'] %>">
+<head>
+  <meta name=”robots” content=”noindex,nofollow” />
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= favicon_link_tag cloudinary_url(@setting.favicon) if @setting.favicon.present? %>
+  <%= favicon_link_tag cloudinary_url(@setting.apple_touch_icon), :rel => 'apple-touch-icon', :type => 'image/png' if @setting.apple_touch_icon.present? %>
+  <title><%= ENV['SITE_NAME'] + " " + t('.admin') %></title>
+  <%= stylesheet_link_tag    "focusadmin/application", media: "all" %>
+  <%= javascript_include_tag "focusadmin/application" %>
+  <%= cloudinary_js_config %>
+    <script>
+      $(function() {
+          if($.fn.cloudinary_fileupload !== undefined) {
+            $("input.cloudinary-fileupload[type=file]").cloudinary_fileupload();
+          }
+        });
+      $.cloudinary.responsive()
+    </script>
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+  <%= csrf_meta_tags %>
+  <style type="text/css">
+    .theme_color { color: <%= ENV['COLOR'] %>; }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top theme_color">
+	<div class="container-fluid">
+	  <div class="navbar-header">
+	    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+	      <span class="sr-only">Toggle navigation</span>
+	      <span class="icon-bar"></span>
+	      <span class="icon-bar"></span>
+	      <span class="icon-bar"></span>
+	    </button>
+	    <%= link_to (ENV['SITE_NAME'] + " " + t('.admin')), root_path, class: "navbar-brand" %>
+	  </div>
+	  <div id="navbar" class="navbar-collapse collapse">
+	    <ul class="nav navbar-nav navbar-right">
+	      <li><%= link_to raw(t('.contents') + " " +fa_icon("sort-down")), "#", class: "dropdown-toggle", data: { toggle: "dropdown" }, role: "button", aria: {haspopup: "true", expanded:"false" } %>
+          <ul class="dropdown-menu">
+            <li><%= link_to t('.review'), review_path %></li>
+            <li><%= link_to t('.scheduled'), scheduled_path %></li>
+            <li><%= link_to t('.articles'), articles_path %></li>
+            <li><%= link_to t('.pickups'), pickups_path %></li>
+            <li><%= link_to t('.features'), features_path %></li>
+            <li><%= link_to t('.tags'), tags_path %></li>
+            <li><%= link_to t('.banners'), banners_path %></li>
+          </ul></li>
+        <li class="dropdown"><%= link_to raw(t('.items') + " " +fa_icon("sort-down")), "#", class: "dropdown-toggle", data: { toggle: "dropdown" }, role: "button", aria: {haspopup: "true", expanded:"false" } %>
+          <ul class="dropdown-menu">
+            <li><%= link_to t('.products'), items_products_path %></li>
+            <li><%= link_to t('.events'), items_events_path %></li>
+          </ul>
+        </li>
+        <li class="dropdown"><%= link_to raw(t('.users') + " " +fa_icon("sort-down")), "#", class: "dropdown-toggle", data: { toggle: "dropdown" }, role: "button", aria: {haspopup: "true", expanded:"false" } %>
+          <ul class="dropdown-menu">
+            <li><%= link_to t('.users_list'), users_path %></li>
+            <% if ENV['DEFAULT_ROLE'] == "user" %><li><%= link_to t('.curator_application_list'), curator_applicants_path %></li><% end %>
+          </ul>
+        </li>
+        <!-- <li><%= link_to t('.ads'), '#' %></li> -->
+	      <li><%= link_to t('.information'), information_index_path %></li>
+        <li><%= link_to t('.comments'), comments_path %></li>
+	      <li><%= link_to t('.settings'), settings_path %></li>
+	      <li><%= link_to t('.view_site'), main_app.root_path %></li>
+	    </ul>
+	  </div>
+</div>
+</nav>
+
+<div class="container-fluid">
+    <% if flash %>
+      <% flash.each do |type, msg| %>
+        <div class="alert alert-success">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <%= msg %>
+        </div>
+      <% end %>
+    <% end %>
+	<%= yield %>
+</div>
+
+<footer>
+  <div class="page_top">
+    <a class="page-top" href="#">PAGE TOP</a>
+  </div>
+</footer>
+
+</body>
+</html>

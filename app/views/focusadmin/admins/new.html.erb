@@ -1,0 +1,13 @@
+<h1><%= t('.title') %></h1>
+
+<%= simple_form_for(@admin, html: { class: 'form-vertical' }) do |f| %>
+    <%= f.input :email %>
+    <%= f.input :password %>
+    <%= f.input :password_confirmation %>
+  <div class="actions">
+    <%= f.button :submit, t('.create') %>
+  </div>
+<% end %>
+
+<hr />
+<%= link_to t('.return'), admins_path %>

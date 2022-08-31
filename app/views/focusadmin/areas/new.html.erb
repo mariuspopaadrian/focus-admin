@@ -1,0 +1,46 @@
+<h1><%= t('.new_area') %></h1>
+<div class="row">
+  <div class="col-sm-8">
+    <%= simple_form_for(@area, wrapper: :horizontal_form, html: { class: 'form-horizontal' }) do |f| %>
+      <%= f.error_notification %>
+
+      <div class="form-inputs">
+        <%= f.input :name, label: t('.name') %>
+        <%= f.input :slug, label: t('.slug') %>
+        <%= f.input :visibility, label: t('.visibility') %>
+        <%= f.input :ancestry, label: t('.ancestry') %>
+
+        <div class="form-group string optional area_thumbnail">
+          <label class="col-sm-3 control-label"><%= t('.thumbnail') %></label>
+          <div class="col-sm-9 preview">
+            <%= cl_image_upload_tag('area[thumbnail]', :tags => "area_thumbnail") %>
+          </div>
+        </div>
+
+        <div class="form-group string optional area_thumbnail">
+          <label class="col-sm-3 control-label"><%= t('.thumbnail2') %></label>
+          <div class="col-sm-9 preview">
+            <%= cl_image_upload_tag('area[thumbnail2]', :tags => "area_thumbnail2") %>
+          </div>
+        </div>
+
+        <div class="form-group string optional area_thumbnail">
+          <label class="col-sm-3 control-label"><%= t('.thumbnail3') %></label>
+          <div class="col-sm-9 preview">
+            <%= cl_image_upload_tag('area[thumbnail3]', :tags => "area_thumbnail2") %>
+          </div>
+        </div>
+
+        <%= f.input :description, label: t('.description') %>
+      </div>
+
+      <div class="form-actions">
+        <%= f.button :submit %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<hr />
+
+<%= link_to t('.back'), areas_path %>

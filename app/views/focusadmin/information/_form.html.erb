@@ -1,0 +1,14 @@
+<%= simple_form_for(@information) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :title %>
+    <%= f.input :slug %>
+    <%= f.cktext_area :body, :ckeditor => {:language => 'ja'}, :ckeditor => {:uiColor => '#ffffff', :toolbar => 'mini'} %>
+    <%= cl_image_upload_tag('information[thumbnail]', :tags => "information_thumbnail") %>
+
+    <%= f.input :status, :as => :hidden, :input_html => { :value => "published" } %>
+  </div>
+  <br>
+  <%= f.button :submit, "記事を公開" %>
+<% end %>

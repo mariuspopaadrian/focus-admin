@@ -1,0 +1,29 @@
+<h1><%= t('.title') %></h1>
+<div class="table-responsive">
+  <table class="table table-striped" id="sortable_area">
+    <thead>
+      <tr>
+        <th><%= t('.rank') %></th>
+        <th><%= t('.name') %></th>
+        <th></th>
+        <th></th>
+        <th><%= t('.description') %></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @areas.each do |area| %>
+      <tr data-item-id=<%= "#{area.id}" %> class="item">
+        <td><%= area.ancestry %></td>
+        <td><%= cl_image_tag area.thumbnail, :width => 160, :class => "img-responsive" if area.thumbnail.present? %><br><%= link_to area.name, main_app.area_path(area), target: "_blank" %></td>
+        <td><%= cl_image_tag area.thumbnail2, :width => 160, :class => "img-responsive" if area.thumbnail2.present? %></td>
+        <td><%= cl_image_tag area.thumbnail3, :width => 160, :class => "img-responsive" if area.thumbnail3.present? %></td>
+        <td><%= area.description %></td>
+        <td><%= link_to t('.edit'), edit_area_path(area.id) %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= link_to t('.new_area'), new_area_path, class: "btn btn-default" %>

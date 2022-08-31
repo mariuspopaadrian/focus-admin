@@ -1,0 +1,33 @@
+<h1>Products</h1>
+<div class="table-responsive">
+	<table class="table table-striped">
+	  <thead>
+	    <tr>
+        <th>Article</th>
+	      <th><%= sort_link(@q, :id, 'ID', default_order: :desc) %></th>
+        <th colspan="2">Product</th>
+        <th>Price</th>
+	      <th>data</th>
+        <th>meta info</th>
+        <th>Clicks</th>
+        <th>Updated At</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	  	<% @items.each do |i| %>
+	    <tr id="<%= i.id %>">
+        <td><%= link_to fa_icon("file-text-o"), main_app.article_path(i.article), target: "_blank" %></td>
+	      <td><small><%= i.id %></small></td>
+        <td><%= image_tag i.product_image_url, width: "60px" %></td>
+	      <td><%= link_to i.product_name, i.source, target: "_blank" %></td>
+        <td><%= number_to_currency(i.product_price, locale: I18n.locale) %> <del><%= number_to_currency(i.product_original_price, locale: I18n.locale) %></del></td>
+        <td><%= i.data %></td>
+        <td>Material: <%= i.product_material %><br>Color: <%= i.product_color %></td>
+        <td><small>coming soon</small></td>
+        <td><%= i.updated_at.to_s(:simple) %></td>
+	    </tr>
+	    <% end %>
+	  </tbody>
+	</table>
+  <%= paginate @items %>
+</div>

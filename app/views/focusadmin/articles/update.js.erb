@@ -1,0 +1,19 @@
+<% if I18n.locale == :ja %>
+  <% if @action == "change_to_draft" %>
+  	$('td[data-article-id="<%= @article_id %>"]').html(`<td class="status_just_changed">下書き</td>`);
+  <% elsif @action == "reject" %>
+  	$('td[data-article-id="<%= @article_id %>"]').html(`<td class="status_just_changed">差し戻しました</td>`);
+  <% elsif @action == "cancelled_schedule" %>
+    $('td[data-article-id="<%= @article_id %>"]').html(`<td class="status_just_changed">キャンセルしました</td>`);
+  <% else %>
+  	$('td[data-article-id="<%= @article_id %>"]').html(`<td class="status_just_changed">公開しました</td>`);
+  <% end %>
+<% else %>
+  <% if @action == "change_to_draft" %>
+    $('td[data-article-id="<%= @article_id %>"]').html(`<td class="status_just_changed">Unpublished</td>`);
+  <% elsif @action == "reject" %>
+    $('td[data-article-id="<%= @article_id %>"]').html(`<td class="status_just_changed">Rejected</td>`);
+  <% else %>
+    $('td[data-article-id="<%= @article_id %>"]').html(`<td class="status_just_changed">Now Public</td>`);
+  <% end %>
+<% end %>

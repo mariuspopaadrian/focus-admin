@@ -1,0 +1,37 @@
+<h1><%= t('.title') %></h1>
+
+<%= form_for(@banner) do |f| %>
+  <% if @banner.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@banner.errors.count, "error") %> prohibited this banner from being saved:</h2>
+
+      <ul>
+      <% @banner.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= t('.banner') %>
+  <div class="preview">
+    <%= cl_image_upload_tag('banner[banner]', :tags => "banner_icon") %>
+  </div>
+
+  <div class="field">
+    <%= f.label t('.link') %><br>
+    <%= f.text_field :link %>
+  </div>
+  <!-- <div class="field">
+    <%= f.label t('.target') %><br>
+    <%= f.text_field :target %>
+  </div> -->
+  <div class="field">
+    <%= f.label t('.memo') %><br>
+    <%= f.text_area :memo %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit t('.register'), class: "btn btn-default" %>
+  </div>
+<% end %>

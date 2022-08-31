@@ -1,0 +1,68 @@
+<h1>キュレーター応募者一覧</h1>
+<hr />
+<%= search_form_for @q, class: "form-inline" do |f| %>
+  <%= f.label t('.email_cont') %>
+  <%= f.search_field :email_cont, class: "form-control" %>
+  <%= f.label t('.handlename_cont') %>
+  <%= f.search_field :handlename_cont, class: "form-control" %>
+  <%= f.submit t('.search'), class: "btn btn-default" %>
+<% end %>
+<hr />
+
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th><%= t('.submitted_at') %></th>
+        <th><%= sort_link(@q, :handlename, t('.handlename')) %></th>
+        <th><%= sort_link(@q, :email, t('.contact')) %></th>
+        <th>Profile URL</th>
+        <th><%= t('.basic_info') %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |u| %>
+      <tr class="active">
+        <td rowspan="4"><%= u.submitted_at.to_s(:simple) %><br><br><%= link_to t('.change_role'), edit_user_path(u) %></td>
+        <td><%= link_to (u.handlename || raw('<span style="color:#999;">' + t('.unset') + '</span>')), curator_page_path(u.username), target: "_blank" %></td>
+        <td><%= u.email %>
+          <% if u.provider.present? %>&nbsp;<%= link_to fa_icon("facebook"), "https://facebook.com/" + u.uid.to_s, target: "_blank" %><% elsif u.facebook_username.present? %>&nbsp;<%= link_to fa_icon("facebook"), "https://facebook.com/" + u.facebook_username, target: "_blank" %><% end %>
+          <% if u.instagram_username.present? %>&nbsp;<%= link_to fa_icon("instagram"), "https://www.instagram.com/" + u.instagram_username, target: "_blank" %><% end %>
+          <% if u.twitter_username.present? %>&nbsp;<%= link_to fa_icon("twitter"), "https://twitter.com/" + u.twitter_username, target: "_blank" %><% end %>
+        </td>
+        <td><%= link_to u.profile_url, u.profile_url, target: "_blank" %></td>
+        <td><%= gender_text(u.gender) %> | <%= age_group_text(u.age_group) %> | <%= residential_area_text(u.residential_area) %><% if u.residential_area_other.present? %>(<%= u.residential_area_other %>)<% end %></td>
+      </tr>
+      <tr>
+        <td colspan="4"><small><%= t('.long_profile_text') %>:</small><br><%= u.long_profile_text if u.long_profile_text.present? %></td>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="4"><small><%= t('.motivation') %>:</small><br><%= u.motivation if u.motivation.present? %></td>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="4"><small><%= @setting.free_field1_question %>:</small><br><%= u.free_field1_answer if u.free_field1_answer.present? %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= paginate @users %>
+</div>
+
+<p>&nbsp;</p>
+
+<div class="row">
+  <div class="col-sm-9">
+    <h2><%= t('.status') %></h2>
+    <table class="table">
+      <tr><th>&nbsp;</th><th>Content Creation without review</th><th>Content Creation</th><th>Login / Favorite</th></tr>
+      <tr><td>official_curator</td><td>○</td><td>○</td><td>○</td></tr>
+      <tr><td>curator</td><td>×</td><td>○</td><td>○</td></tr>
+      <tr><td>user</td><td>×</td><td>×</td><td>○</td></tr>
+    </table>
+  </div>
+</div>
+
+<p>&nbsp;</p>

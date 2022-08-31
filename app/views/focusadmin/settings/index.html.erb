@@ -1,0 +1,120 @@
+<h1 class="pull-left"><%= t('.settings') %>&nbsp;<small><%= t('.current_language') %>: <%= ENV['DEFAULT_LOCALE'] %></small></h1>
+
+<div class="dropdown pull-right" style="margin-top:20px;">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <%= t('.other_settings') %>
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    <li><%= link_to t('.faqs'), faqs_path %></li>
+    <li><%= link_to t('.categories'), categories_path %></li>
+    <li><%= link_to t('.areas'), areas_path %></li>
+    <li><%= link_to t('.pages'), contents_path %></li>
+    <li><%= link_to t('.admins'), admins_path %></li>
+  </ul>
+</div>
+
+<hr style="clear:both;"/>
+<h3>Site Info</h3>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>locale</th>
+      <th>title</th>
+      <th>LOGO</th>
+      <th>Meta description</th>
+      <th>og:description</th>
+      <th>Catch for email</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @settings.each do |setting| %>
+      <tr>
+        <td><h3><%= setting.locale %></h3><%= link_to t('.edit'), edit_setting_path(setting) %><hr><%= link_to t('.edit_page'), edit_page_setting_path(setting) %></td>
+        <td>top title:<h4><%= ENV['SITE_NAME'] %><%= setting.site_name_supplement %></h4>title:<h4><%= ENV['SITE_NAME'] %></h4></td>
+        <td>
+          <% if setting.site_logo_image.present? %>
+          pc: <%= cl_image_tag setting.site_logo_image, :width => 160, :sign_url => true, :class => "img-responsive" %>
+          <% end %><br>
+          <% if setting.sp_site_logo_image.present? %>
+          sp: <%= cl_image_tag setting.sp_site_logo_image, :width => 160, :sign_url => true, :class => "img-responsive" %>
+          <% end %>
+        </td>
+        <td><%= setting.meta_description %></td>
+        <td><%= setting.og_description %></td>
+        <td><%= setting.catch %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h3>Settings</h3>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>locale</th>
+      <th>images</th>
+      <th>social media</th>
+      <th>Author</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @settings.each do |setting| %>
+      <tr>
+        <td><%= setting.locale %></td>
+        <td>
+          <% if setting.og_image.present? %>og:image
+           <%= cl_image_tag setting.og_image, :width => 160, :sign_url => true, :class => "img-responsive" %>
+          <% end %>
+          <% if setting.favicon.present? %>favicon
+           <%= cl_image_tag setting.favicon, :width => 160, :sign_url => true, :class => "img-responsive" %>
+          <% end %>
+          <% if setting.apple_touch_icon.present? %>Apple touch icon
+            <%= cl_image_tag setting.apple_touch_icon, :width => 160, :sign_url => true, :class => "img-responsive" %>
+          <% end %>
+          <% if setting.footer_logo_image.present? %>Footer logo image
+            <%= cl_image_tag setting.footer_logo_image, :sign_url => true, :class => "img-responsive" %>
+          <% end %>
+        </td>
+        <td>
+        <% if setting.facebook_page_url.present? %>facebook:<br><%= link_to "https://www.facebook.com/" + setting.facebook_page_url.to_s + "/", "https://www.facebook.com/" + setting.facebook_page_url.to_s + "/", target: "_blank" %><br><% end %>
+        <% if setting.twitter_account_url.present? %>twitter:<br><%= link_to "https://twitter.com/" + setting.twitter_account_url.to_s, "https://twitter.com/" + setting.twitter_account_url.to_s, target: "_blank" %><br><% end %>
+        <% if setting.instagram_account_url.present? %>instagram:<br><%=  link_to "https://www.instagram.com/" + setting.instagram_account_url.to_s + "/", "https://www.instagram.com/" + setting.instagram_account_url.to_s + "/", target: "_blank" %><br><% end %>
+        <% if setting.line_account_url.present? %>LINE:<br><%=  link_to "https://page.line.me/" + setting.line_account_url.to_s + "/", "https://page.line.me/" + setting.line_account_url.to_s + "/", target: "_blank" %><% end %>
+        </td>
+        <td><%= link_to setting.author_url_anchor_text, setting.author_url, target: "_blank" %> (<%= setting.author %>)</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h3>Content</h3>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>locale</th>
+      <th>exclude_tags</th>
+      <th>exclude_brands</th>
+      <th>Pages</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @settings.each do |setting| %>
+      <tr>
+        <td><%= setting.locale %></td>
+        <td><%= setting.exclude_tags %></td>
+        <td><%= setting.exclude_brands %></td>
+        <td><%= link_to "Concept", main_app.concept_path, target: "_blank" %><br>
+        <%= link_to "Privacy Policy", main_app.privacy_path, target: "_blank" %><br>
+        <%= link_to "Terms", main_app.terms_path, target: "_blank" %><br>
+        <%= link_to "Welcome", setting.welcome_page_url, target: "_blank" if setting.welcome_page_url.present? %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

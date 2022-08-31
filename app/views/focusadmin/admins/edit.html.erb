@@ -1,0 +1,12 @@
+<h1><%= @admin.email %>のパスワードを変更</h1>
+
+<%= simple_form_for(@admin, html: { class: 'form-vertical' }) do |f| %>
+    <%= f.input :password %>
+    <%= f.input :password_confirmation %>
+  <div class="actions">
+    <%= f.button :submit, t('.change') %>
+  </div>
+<% end %>
+
+<hr />
+<%= link_to t('.return'), admins_path %>

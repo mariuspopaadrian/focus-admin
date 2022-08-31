@@ -1,0 +1,26 @@
+<h1><%= t('.pickups') %></h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>ピックアップ箇所</th>
+      <th>記事ID</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pickups.each do |pickup| %>
+      <tr>
+        <td><%= pickup.place %></td>
+        <td><%= link_to pickup.type_id, main_app.article_path(pickup.type_id), target: "_blank" %></td>
+        <td><%= link_to '編集', edit_pickup_path(pickup) %></td>
+        <td><%= link_to '削除', pickup, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to '新しいピックアップ設定', new_pickup_path, class: 'btn btn-default' %>

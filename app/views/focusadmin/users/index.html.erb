@@ -1,0 +1,57 @@
+<hr />
+<%= search_form_for @q, class: "form-inline" do |f| %>
+  <%= f.label t('.email_cont') %>
+  <%= f.search_field :email_cont, class: "form-control" %>
+  <%= f.label t('.handlename_cont') %>
+  <%= f.search_field :handlename_cont, class: "form-control" %>
+  <%= f.submit t('.search'), class: "btn btn-default" %>
+<% end %>
+<hr />
+
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th><%= sort_link(@q, :handlename, t('.handlename')) %></th>
+        <th><%= t('.pv') %></th>
+        <th><%= t('.number_of_articles') %></th>
+        <th><%= t('.status') %></th>
+        <th><%= sort_link(@q, :email, t('.contact')) %></th>
+        <th><%= t('.profile') %></th>
+        <th><%= t('.last_login_datetime') %></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |u| %>
+      <tr>
+        <td><%= link_to (u.handlename || raw('<span style="color:#999;">' + t('.unset') + '</span>')), curator_page_path(u.username), target: "_blank" %></td>
+        <td><%= u.pageview_sum_of_all_articles.to_s(:delimited) if u.pageview_sum_of_all_articles.present? %></td>
+        <td><%= article_count(u) %></td>
+        <td><%= u.roles.first.name if u.roles.present? %></td>
+        <td><%= u.email %><% if u.provider.present? %>&nbsp;<%= link_to fa_icon("facebook"), "https://facebook.com/" + u.uid.to_s, target: "_blank" %><% end %></td>
+        <td><%= u.profile_text.truncate(20) if u.profile_text.present? %></td>
+        <td><%= u.last_sign_in_at || raw('<span style="color:#999;">'+ t('.havent_logged_in_yet') +'</span>') %>&nbsp;(<%= u.sign_in_count %>回)<br><small>User from <%= u.created_at.to_s(:simple) %></small></td>
+        <td><%= link_to "edit", edit_user_path(u) %><br><%= link_to "stats", user_path(u) %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= paginate @users %>
+</div>
+
+<p>&nbsp;</p>
+
+<div class="row">
+  <div class="col-sm-9">
+    <h2><%= t('.status') %></h2>
+    <table class="table">
+      <tr><th>&nbsp;</th><th>Content Creation without review</th><th>Content Creation</th><th>Login / Favorite</th></tr>
+      <tr><td>official_curator</td><td>○</td><td>○</td><td>○</td></tr>
+      <tr><td>curator</td><td>×</td><td>○</td><td>○</td></tr>
+      <tr><td>user</td><td>×</td><td>×</td><td>○</td></tr>
+    </table>
+  </div>
+</div>
+
+<p>&nbsp;</p>

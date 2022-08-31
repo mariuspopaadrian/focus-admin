@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-xs-12">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th><%= sort_link(@q, :id, 'ID', default_order: :desc) %></th>
+            <th><%= t('.title') %></th>
+            <th><%= t('.handlename') %></th>
+            <th><%= sort_link(@q, :updated_at, t('.updated_at')) %></th>
+            <th><%= sort_link(@q, :publish_on_schedule_at, t('.publish_on_schedule_at')) %></th>
+            <th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @scheduled_articles.each do |a| %>
+          <tr id="<%= a.id %>">
+            <td><small><%= a.id %></small></td>
+            <td><%= link_to a.title, main_app.article_path(a), target: "_blank" %> <small><%= link_to fa_icon("pencil"), edit_article_path(a) %></small></td>
+            <td><%= link_to a.user.handlename, curator_page_path(a.user.username), target: "_blank" %></td>
+            <td><%= a.updated_at.to_s(:simple) %></td>
+            <td class="status""><%= a.publish_on_schedule_at.to_s %></td>
+            <td class="cancel" data-article-id="<%= a.id %>"><%= form_for(a, url: article_path(a), html: {method: "put"}, data: { remote: true }) do |f| %>
+              <%= submit_tag t('.cancel_schedule'), name: "cancel_schedule_button", class: "btn btn-default btn-xs" %>
+            <% end %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>

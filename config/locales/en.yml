@@ -1,0 +1,318 @@
+en:
+  activerecord:
+    attributes:
+      information:
+        title: 'Title'
+        excerpt: 'Excerpt'
+        body: 'Body'
+        slug: 'url'
+        thumbnail: 'Thumbnail'
+        status: 'Status'
+        published_at: 'Published At'
+  layouts:
+    focusadmin:
+      application:
+        admin: "Admin"
+        contents: "Content"
+        articles: 'Articles'
+        review: 'Review'
+        scheduled: 'Scheduled Posts'
+        features: 'Features'
+        tags: 'Tags'
+        banners: 'Banners'
+        items: 'Items'
+        products: 'Product Info'
+        events: 'Event Info'
+        comments: 'Comments'
+        ads: 'Ads'
+        pickups: 'Pickup'
+        information: 'Info'
+        users: 'Users'
+        users_list: 'Users List'
+        curator_application_list: 'Curator Applicants'
+        settings: 'Settings'
+        view_site: "View Site"
+  focusadmin:
+    dashboard:
+      index:
+        logout: 'Logout'
+        ranking: 'Ranking'
+        new_articles_graph: 'New Articles'
+        articles_chart: 'Articles'
+        review: 'Review'
+        articles_waiting_review: 'Articles waiting for review'
+        total: 'Total'
+        submitted: 'Submitted at '
+        users_chart: 'Users'
+      rankings:
+        curators_by_pv: 'Curators by PV'
+        curator_pv_count_logic_desc: PV count updated every midnight
+        article_pv_count_logic_desc: PV count updated every 15 minutes
+        articles: 'Articles'
+    comments:
+      index:
+        handlename: 'Curator'
+        article: 'Article'
+        body: 'Comment'
+        created_at: 'Commented at'
+    articles:
+      index:
+        title_cont: Title contains
+        excerpt_cont: Excerpt contains
+        search: Search
+        articles_chart: 'Articles'
+        articles_published_count: 'Articles published'
+        review: 'Review'
+        title: 'Title'
+        handlename: 'Curator'
+        initially_submitted_at: 'Submitted at'
+        updated_at: 'Updated at'
+        published_at: 'Published at'
+        status: 'Status'
+        accept: 'Accept'
+        reject: 'Reject'
+        return_to_draft: 'Unpublish'
+        close: 'Close'
+        reject_reason: 'Reason to reject (this will be notified)'
+        reject_message: 'Message (this will be notified)'
+        published: 'Published'
+        reviewing: 'In Review'
+        rejected: 'Waiting re-submission'
+        draft: 'Draft'
+        title_content_mismatch: 'Mismatch in title and content'
+        inappropriate_image_text: 'Inappropriate images and/or text'
+        source_problem: 'Sources are not properly set'
+        commercial: 'Inappropriate Commercial use, Advertisement, PR'
+        purpose_is_linking_to_certain_sites: 'Article links to certain sites with hidden agenda'
+        not_matome: 'Too little or too much items'
+        single_origin: 'Article consists of single origin'
+        term_problem: 'Problem with Terms & Conditions'
+        other: 'Other'
+      edit:
+        title: Edit Article Information
+        pr: PR Article
+        pr_end: PR Period Ends At
+        sponsor: Sponsor Name
+        pr_pickup: Pickup PR Article
+        publish_on_schedule_at: Publish At
+        select_category: Select Category
+      update:
+        article_has_been_rejected: 'The Article has been rejected.'
+        article_has_been_scheduled: 'The Article will be published on schedule.'
+        article_has_been_published: 'The Article has been published.'
+      review:
+        published_articles: 'Articles'
+        articles_chart: 'Articles'
+        articles_waiting_review: 'Articles waiting for review'
+        title: 'Title'
+        handlename: 'Curator'
+        updated_at: 'Updated at'
+        published_at: 'Published at'
+        status: 'Status'
+        accept: 'Accept'
+        reject: 'Reject'
+        return_to_draft: 'Unpublish'
+        close: 'Close'
+        reject_reason: 'Reason to reject (this will be notified)'
+        reject_message: 'Message (this will be notified)'
+        published: 'Published'
+        reviewing: 'In Review'
+        rejected: 'Waiting re-submission'
+        draft: 'Draft'
+        post_to_facebook: 'Post to Facebook'
+        message_to_post_to_facebook: "Message to Post to Facebook"
+        post_to_twitter: 'Post to twitter'
+        message_to_post_to_twitter: "Message to Post to twitter"
+        publish_now: 'Publish Now'
+        publish_on_schedule: 'Publish on Schedule'
+        title_content_mismatch: 'Mismatch in title and content'
+        inappropriate_image_text: 'Inappropriate images and/or text'
+        source_problem: 'Sources are not properly set'
+        commercial: 'Inappropriate Commercial use, Advertisement, PR'
+        purpose_is_linking_to_certain_sites: 'Article links to certain sites with hidden agenda'
+        not_matome: 'Too little or too much items'
+        single_origin: 'Article consists of single origin'
+        term_problem: 'Problem with Terms & Conditions'
+        other: 'Other'
+      scheduled:
+        title: 'Title'
+        handlename: 'Author'
+        updated_at: 'Updated At'
+        status: 'Status'
+        publish_on_schedule_at: 'Publish At'
+        cancel_schedule: "Cancel"
+    pickups:
+      index:
+        pickups: "Pickup Settings"
+    tag:
+      index:
+        title: "Tags"
+        articles: "articles"
+    areas:
+      index:
+        rank: "Rank"
+        title: "Areas"
+        name: "Area Name"
+        description: "Description"
+        edit: "Edit"
+        new_area: "New Area"
+      edit:
+        edit_area: "Edit Area Info"
+        name: "Area Name"
+        description: "Description"
+        thumbnail: "Thumbnail"
+        thumbnail2: "Mobile Thumbnail"
+        thumbnail3: "Mobile Thumbnail for Area Detail Page"
+        back: "Back"
+      new:
+        new_area: "New Area"
+        name: "Area Name"
+        slug: "URL"
+        visibility: "Show?"
+        ancestry: "Hierarchy"
+        description: "Description"
+        thumbnail: "Thumbnail"
+        thumbnail2: "Mobile Thumbnail"
+        thumbnail3: "Mobile Thumbnail for Area Detail Page"
+        back: "Back"
+    features:
+      index:
+        title: Features
+        name: Feature Name
+        featured_articles: Articles for the Feature
+        pageview_sum_of_all_articles: PV Sum of the Articles
+        pageview_monthly: Monthly PV
+        description: Description
+        status: Status
+        edit: Edit
+        new_feature: Create Feature
+      new:
+        new_feature: Create Feature
+        name: Feature Name
+        featured_articles: Articles for the Feature
+        featured_articles_hint: Please enter article IDs in order, separated by commas
+        thumbnail: Cover Image
+        description: Description
+        status: Status
+        published: Published
+        in_draft: In Draft
+        back: Go Back to the list of Features
+      edit:
+        edit_feature: Edit Feature
+        name: Feature Name
+        featured_articles: Articles for the Feature
+        featured_articles_hint: Please enter article IDs in order, separated by commas
+        thumbnail: Cover Image
+        description: Description
+        status: Status
+        published: Published
+        in_draft: In Draft
+        delete: Delete this feature
+        back: Go Back to the list of Features
+    users:
+      index:
+        email_cont: Email contains
+        handlename_cont: Handlename contains
+        search: Search
+        contact: "Contact"
+        email: "Email"
+        handlename: "Handlename"
+        profile: "Profile"
+        number_of_articles: "Articles"
+        status: "Status"
+        pv: "PV"
+        last_login_datetime: "Last Login Datetime"
+        registration_datetime: "Registration Datetime"
+        authentication: "Authentication"
+        unset: "Unset"
+        havent_logged_in_yet: "Haven't logged in yet"
+        mail_authentication: "Email"
+      curator_applicants:
+        email_cont: Email contains
+        handlename_cont: Handlename contains
+        search: Search
+        contact: "Contact"
+        email: "Email"
+        handlename: "Handlename"
+        profile: "Profile"
+        basic_info: "Basic Info"
+        number_of_articles: "Articles"
+        status: "Status"
+        pv: "PV"
+        last_login_datetime: "Last Login Datetime"
+        registration_datetime: "Registration Datetime"
+        authentication: "Authentication"
+        unset: "Unset"
+        havent_logged_in_yet: "Haven't logged in yet"
+        mail_authentication: "Email"
+        submitted_at: "Submitted At"
+        change_role: "Change Role"
+      edit:
+        roles:
+          official_curator: Official Curator
+          curator: Curator
+          user: User
+    faqs:
+      index:
+        faq: "FAQ"
+        question: "Question"
+        answer: "Answer"
+        updated_at: "Updated At"
+        edit_faq: "Edit"
+        new_faq: "New FAQ"
+      new:
+        new_faq: "New FAQ"
+        image: "Image for supplimenting the answer"
+      edit:
+        image: "Image for supplimenting the answer"
+    information:
+      index:
+        title: Information
+        new: New Information
+    contents:
+      index:
+        title: "Manage Pages"
+        new: "Create new page"
+    admins:
+      index:
+        title: "Admins"
+        new: "Create new Admin account"
+        email: "Email Address"
+        last_login: "Last Login Date"
+        change_password: "Change Password"
+        delete_account: "Delete"
+      new:
+        title: "Create new Admin account"
+        create: "Create"
+        return: "Return"
+      edit:
+        title: "Edit Admin info"
+        change: "Change"
+        return: "Return"
+    banners:
+      index:
+        title: "Banners"
+        banner: "Banner"
+        link: "Link"
+        target: "Target"
+        memo: "Memo"
+        new_banner: "Add a new banner"
+      new:
+        title: "Add a new banner"
+        banner: "Baner"
+        link: "Link"
+        target: "Target"
+        memo: "Memo"
+        register: "Add"
+    settings:
+      index:
+        settings: "Settings"
+        current_language: "Current Language"
+        other_settings: "Other"
+        edit: "Edit"
+        edit_page: "Edit Page"
+        faqs: "FAQ"
+        categories: "Categories"
+        areas: "Areas"
+        pages: "Pages"
+        admins: "Admin Accounts"

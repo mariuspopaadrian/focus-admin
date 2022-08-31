@@ -1,0 +1,7 @@
+<h1>Edit User</h1>
+
+<%= simple_form_for @user do |f| %>
+  <%= f.association :roles, :collection => Role.global,
+                    :label_method => lambda { |el| t ".roles.#{el.name}" }, label: "Role" %>
+  <%= f.button :submit %>
+<% end %>

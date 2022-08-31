@@ -1,0 +1,29 @@
+<h1><%= t('.title') %></h1>
+<div class="table-responsive">
+  <table class="table table-striped" id="sortable_feature">
+    <thead>
+      <tr>
+        <th><%= t('.name') %></th>
+        <th><%= t('.description') %></th>
+        <th width="130"><%= t('.featured_articles') %></th>
+        <th width="80"><%= t('.pageview_sum_of_all_articles') %></th>
+        <th width="80"><%= t('.pageview_monthly') %></th>
+        <th><%= t('.status') %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @features.each do |feature| %>
+      <tr data-item-id=<%= "#{feature.id}" %> class="item">
+        <td><%= cl_image_tag feature.thumbnail, :width => 160, :class => "img-responsive" if feature.thumbnail.present? %><br><%= link_to feature.name, main_app.feature_path(feature), target: "_blank" %></td>
+        <td><%= feature.description %></td>
+        <td><%= feature.featured_articles %></td>
+        <td><%= feature.pageview_sum_of_all_articles %></td>
+        <td><%= feature.pageview_monthly %></td>
+        <td><%= feature.status %><br><%= link_to t('.edit'), edit_feature_path(feature.id) %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= link_to t('.new_feature'), new_feature_path, class: "btn btn-default" %>

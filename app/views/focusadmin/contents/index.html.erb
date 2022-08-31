@@ -1,0 +1,19 @@
+<h1><%= t('.title') %></h1>
+
+<table class="table">
+  <tbody>
+    <% @contents.each do |content| %>
+      <tr>
+        <td><%= content.created_at.to_s(:simple) %></td>
+        <td><%= content.status %></td>
+        <td><%= link_to content.title, main_app.content_path(content), target: "_blank" %></td>
+        <td><%= link_to 'Edit', edit_content_path(content) %></td>
+        <td><%= link_to 'Delete', content, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<hr>
+
+<%= link_to t('.new'), new_content_path %>
