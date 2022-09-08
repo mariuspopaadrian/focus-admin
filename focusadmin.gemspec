@@ -29,7 +29,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<uglifier>.freeze, [">= 1.3.0"])
       s.add_runtime_dependency(%q<jquery-rails>.freeze, [">= 0"])
       s.add_runtime_dependency(%q<jquery-ui-rails>.freeze, [">= 0"])
-      s.add_runtime_dependency(%q<bootstrap-sass>.freeze, ["~> 3.3.6"])
+      s.add_runtime_dependency(%q<bootstrap-sass>.freeze, ["~> 3.4.1"])
       s.add_development_dependency(%q<sqlite3>.freeze, [">= 0"])
     else
       s.add_dependency(%q<rails>.freeze, ["~> 4.2.1"])
@@ -46,7 +46,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<uglifier>.freeze, [">= 1.3.0"])
     s.add_dependency(%q<jquery-rails>.freeze, [">= 0"])
     s.add_dependency(%q<jquery-ui-rails>.freeze, [">= 0"])
-    s.add_dependency(%q<bootstrap-sass>.freeze, ["~> 3.3.6"])
+    s.add_dependency(%q<bootstrap-sass>.freeze, ["~> 3.4.1"])
     s.add_dependency(%q<sqlite3>.freeze, [">= 0"])
   end
 end
