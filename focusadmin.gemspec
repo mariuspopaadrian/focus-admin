@@ -24,7 +24,7 @@ Gem::Specification.new do |s|
     s.specification_version = 4
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<rails>, ["~> 5.1.7"])
+      s.add_runtime_dependency(%q<rails>, ["~> 5.2.8"])
       s.add_runtime_dependency(%q<sass-rails>, ["~> 5.0.7"])
       s.add_runtime_dependency(%q<uglifier>, [">= 1.3.0"])
       s.add_runtime_dependency(%q<jquery-rails>, [">= 0"])
@@ -32,7 +32,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<bootstrap-sass>, ["~> 3.4.1"])
       s.add_development_dependency(%q<sqlite3>, [">= 0"])
     else
-      s.add_dependency(%q<rails>, ["~> 5.1.7"])
+      s.add_dependency(%q<rails>, ["~> 5.2.8"])
       s.add_dependency(%q<sass-rails>, ["~> 5.0.7"])
       s.add_dependency(%q<uglifier>, [">= 1.3.0"])
       s.add_dependency(%q<jquery-rails>, [">= 0"])
@@ -41,7 +41,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<sqlite3>, [">= 0"])
     end
   else
-    s.add_dependency(%q<rails>, ["~> 5.1.7"])
+    s.add_dependency(%q<rails>, ["~> 5.2.8"])
     s.add_dependency(%q<sass-rails>, ["~> 5.0.7"])
     s.add_dependency(%q<uglifier>, [">= 1.3.0"])
     s.add_dependency(%q<jquery-rails>, [">= 0"])
